@@ -1,0 +1,17 @@
+<template name="uploadForm">
+  {{#with currentUpload}}
+    Uploading <strong>{{file.name}}</strong>
+    <div id="progress">{{progress.get}}%</div>
+  {{else}}
+    <fieldset class="uploadForm grid">
+      <div class="col-0"><label for="fileDescription">Description</label></div>
+      <div class="col-0"><input id="fileDescription" type="text" /></div>
+      <div class="col-0">
+<input type="file" name="file" id="fileInput" class="fileInput" />
+<label for="fileInput"><i class="fa fa-upload"></i> {{uploadLabel}}</label>
+</div>
+
+
+    </fieldset>
+  {{/with}}
+</template>

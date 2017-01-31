@@ -1,0 +1,10 @@
+<template name="podcasts">
+  <h2>Podcasts</h2>
+  {{> uploadForm }}
+
+  <div class="podcast-file-list">
+    {{#each podcast in podcasts}}
+      {{> podcast podcast=podcast}}
+    {{/each}}
+  </div>
+</template>

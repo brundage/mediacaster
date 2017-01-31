@@ -1,0 +1,22 @@
+<template name="App_body">
+  <div class="header-container">
+    <header>
+      <h1>
+        <i class="fa fa-podcast"></i> Mediacaster
+        {{> App_activityIndicator }}
+      </h1>
+    </header>
+  </div>
+
+  <div class="main-container">
+    <div id="render-target" class="main grid">
+      {{> Template.dynamic template=main}}
+    </div>
+  </div>
+
+  <div class="footer-container">
+    <footer>
+      <p>&copy; 2017 <a href="http://deanbrundage.com">Dean Brundage</a></p>
+    </footer>
+  </div>
+</template>
