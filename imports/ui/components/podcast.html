@@ -1,5 +1,7 @@
 <template name="podcast">
   <div class="podcast">
-
-  </div>>
+    {{podcast.meta.description}}
+    <a href="{{podcast.link}}?download=true" download="{{podcast.name}}" target="_parent">{{podcast.name}}</a>
+    {{podcast.fileURL}}
+  </div>
 </template>

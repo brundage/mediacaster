@@ -28,7 +28,7 @@ kadira:flow-router
 kadira:blaze-layout
 arillo:flow-router-helpers
 alanning:roles
-aldeed:simple-schema
 less
 session
 ostrio:files
+aldeed:collection2-core

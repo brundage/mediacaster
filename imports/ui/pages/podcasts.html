@@ -3,8 +3,9 @@
   {{> uploadForm }}
 
   <div class="podcast-file-list">
-    {{#each podcast in podcasts}}
-      {{> podcast podcast=podcast}}
+    {{#each pc in podcasts}}
+<p>{{podcast}}</p>
+      {{> podcast podcast=pc}}
     {{/each}}
   </div>
 </template>

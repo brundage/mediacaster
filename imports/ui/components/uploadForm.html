@@ -4,14 +4,14 @@
     <div id="progress">{{progress.get}}%</div>
   {{else}}
     <fieldset class="uploadForm grid">
-      <div class="col-0"><label for="fileDescription">Description</label></div>
-      <div class="col-0"><input id="fileDescription" type="text" /></div>
       <div class="col-0">
-<input type="file" name="file" id="fileInput" class="fileInput" />
-<label for="fileInput"><i class="fa fa-upload"></i> {{uploadLabel}}</label>
-</div>
-
-
+        <i class="fa fa-plus-circle"></i>
+        <label for="fileDescription">Description</label>
+        <input id="fileDescription" type="text" />
+        <input type="file" name="file" id="fileInput" class="fileInput" disabled="{{fileInputDisabled}}" />
+        <label for="fileInput"><i class="fa fa-upload"></i> {{uploadLabel}}</label>
+      </div>
     </fieldset>
   {{/with}}
+  <hr />
 </template>

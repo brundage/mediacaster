@@ -11,10 +11,8 @@ Template.podcasts.onCreated(function() {
   });
 });
 
-/*
 Template.podcasts.helpers({
   podcasts() {
     return Podcasts.find({});
   }
 });
-*/

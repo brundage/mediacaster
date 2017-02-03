@@ -5,7 +5,23 @@ import './uploadForm.css';
 
 Template.uploadForm.onCreated( function() {
   this.currentUpload = new ReactiveVar(false);
-  this.uploadLabel = new ReactiveVar("Choose a file");
+  this.uploadLabel = new ReactiveVar("Enter a description");
+  this.fileInputDisabled = new ReactiveVar("disabled");
+
+  this.disableFileChooser = function() {
+    this.fileInputDisabled.set("disabled");
+    this.uploadLabel.set("Enter a description");
+  }.bind(this);
+
+  this.readyFileChooser = function() {
+    this.fileInputDisabled.set(false);
+    this.uploadLabel.set("Choose a file");
+  }.bind(this);
+
+  this.fileDescription = function() {
+    return this.$('#fileDescription').val();
+  }.bind(this);
+
 });
 
 
@@ -14,30 +30,41 @@ Template.uploadForm.helpers({
     return Template.instance().currentUpload.get();
   },
 
+  fileInputDisabled: function() {
+    return Template.instance().fileInputDisabled.get();
+  },
+
   uploadLabel: function() {
     return Template.instance().uploadLabel.get();
-  }
+  },
 });
 
 
 Template.uploadForm.events({
+  'change #fileDescription': function(e, template) {
+    if( e.currentTarget.value ) {
+      template.readyFileChooser();
+    } else {
+      template.disableFileChooser();
+    }
+  },
+
   'change #fileInput': function(e, template) {
     if( e.currentTarget.files ) {
       if( e.currentTarget.files.length > 1 ) {
-        Template.instance().uploadLabel.set(e.currentTarget.files.length + ' files selected');
+        template.uploadLabel.set(e.currentTarget.files[0]);
       } else {
-        Template.instance().uploadLabel.set(e.currentTarget.value);
+        template.uploadLabel.set(e.currentTarget.value);
       }
 
-      let description = Template.instance().$('#fileDescription')
-      if( description.val() ) {
+      if( template.fileDescription() ) {
         if( e.currentTarget.files[0] ) {
           var upload = Podcasts.insert({
             file: e.currentTarget.files[0],
             streams: 'dynamic',
             chunkSize: 'dynamic',
             meta: {
-              description: description.val()
+              description: template.fileDescription()
             }
           }, false);
 
@@ -52,6 +79,7 @@ Template.uploadForm.events({
               alert('File "' + fileObj.name + '" successfully uploaded');
             }
             template.currentUpload.set(false);
+            template.disableFileChooser();
           });
 
           upload.start();

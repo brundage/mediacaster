@@ -20,3 +20,7 @@
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
 }
+
+.fileInput:disabled + label {
+  color: #aaa;
+}
